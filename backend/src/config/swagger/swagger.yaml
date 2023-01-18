@@ -1,0 +1,121 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /ping:
+    get:
+      tags:
+        - Ping
+      responses:
+        "200":
+          description: OK
+  /accounts:
+    get:
+      summary: get all accounts
+      parameters:
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit
+          schema:
+            type: integer
+      tags:
+        - Account
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+    post:
+      tags:
+        - Account
+      summary: Create a new account
+      responses:
+        "200":
+          description: OK
+
+  /accounts/:id:
+    delete:
+      summary: delete accounts
+      parameters:
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit
+          schema:
+            type: integer
+      tags:
+        - Account
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+    put:
+      tags:
+        - Account
+      summary: Update account
+      responses:
+        "200":
+          description: OK
+
+  /links:
+    get:
+      parameters:
+        - name: username
+          in: query
+          description: username
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: page
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: limit
+          schema:
+            type: integer
+      tags:
+        - Ping
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+    post:
+      tags:
+        - Ping
+
+      responses:
+        "200":
+          description: OK
+  /links/move:
+    put:
+      tags:
+        - Ping
+
+      responses:
+        "200":
+          description: OK

@@ -1,0 +1,40 @@
+### GET links
+GET http://localhost:5000/links
+
+
+### GET ACCOUNT
+GET http://localhost:5000/links?page=2&limit=1&username=lalapoh.id
+ 
+
+### CREATE ACCOUNT
+POST http://localhost:5000/links
+content-type: application/json
+
+{
+    "account": "63c6c6294685e522ba4fffdd",
+    "number": 1,
+    "links": [
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "http://sepatu"
+      },
+      {
+        "number": "2",
+        "name": "baju",
+        "link": "http://baju"
+      }
+    ]
+}
+
+### UPDATE ACCOUNT
+PUT http://localhost:5000/links/
+content-type: application/json
+ 
+
+ 
+
+### DELETE ACCOUNT
+DELETE http://localhost:5000/links/63c6c5d94685e522ba4fffdb
+### DELETE links
+DELETE http://localhost:5000/links
