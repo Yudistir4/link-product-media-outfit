@@ -1,0 +1,30 @@
+
+### 
+PUT http://localhost:5000/links/63c7dd3861084afcf7ea343d
+content-type: application/json
+ 
+{
+    "number": 3,
+    "links": [
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      },
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      },
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://lala.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      },
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      }
+    ]
+}

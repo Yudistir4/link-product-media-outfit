@@ -1,21 +1,20 @@
 const Account = require("../../models/Account");
 const { cloudinary } = require("../../../../config/Cloudinary");
-const updateProfilePic = async (req, res) => {
-  try {
-    let data = await Account.findOne({ _id: req.params.id });
+const { tryCatch } = require("../../utils/tryCatch");
+const { successRespond, customRespond } = require("../../utils/respondUtils");
+const AppError = require("../../utils/AppError");
 
-    // Delete image
-    if (data.filename) {
-      await cloudinary.uploader.destroy(data.filename);
-    }
-
-    data.profilePicUrl = req.file.path;
-    data.filename = req.file.filename;
-    await data.save();
-    res.status(200).json({ data });
-  } catch (error) {
-    res.status(500).json(error);
+exports.updateProfilePic = tryCatch(async (req, res) => {
+  let data = await Account.findOne({ _id: req.params.id });
+  if (!data) {
+    throw new AppError("Not Found", 404);
   }
-};
-
-module.exports = { updateProfilePic };
+  // Delete image
+  if (data.filename) {
+    await cloudinary.uploader.destroy(data.filename);
+  }
+  data.profilePicUrl = req.file.path;
+  data.filename = req.file.filename;
+  await data.save();
+  successRespond(res, customRespond.UpdateSuccess, data);
+});

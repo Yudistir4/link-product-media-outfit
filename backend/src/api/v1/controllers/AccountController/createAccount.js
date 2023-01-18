@@ -1,13 +1,9 @@
 const Account = require("../../models/Account");
+const { successRespond, customRespond } = require("../../utils/respondUtils");
+const { tryCatch } = require("../../utils/tryCatch");
 
-const createAccount = async (req, res) => {
-  try {
-    let data = new Account(req.body);
-    data = await data.save();
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-};
-
-module.exports = { createAccount };
+exports.createAccount = tryCatch(async (req, res) => {
+  let data = new Account(req.body);
+  data = await data.save();
+  successRespond(res, customRespond.AccountCreated, data);
+});

@@ -1,0 +1,23 @@
+
+
+### CREATE ACCOUNT
+POST http://localhost:5000/accounts
+content-type: application/json
+
+{
+    "username": "outfitgramasas" 
+} 
+### CREATE ACCOUNT
+POST http://localhost:5000/accounts
+content-type: application/json
+
+{
+    "username": "fakboy" 
+} 
+### CREATE ACCOUNT
+POST http://localhost:5000/accounts
+content-type: application/json
+
+{
+    "username": "ruang" 
+} 

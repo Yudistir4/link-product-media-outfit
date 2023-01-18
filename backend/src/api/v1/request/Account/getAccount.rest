@@ -1,0 +1,9 @@
+### GET ACCOUNTS
+GET http://localhost:5000/accounts
+
+
+### GET ACCOUNT
+GET http://localhost:5000/accounts
+    ?page=1
+    &limit=10
+ 

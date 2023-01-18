@@ -1,0 +1,27 @@
+
+### CREATE Link
+POST http://localhost:5000/links
+content-type: application/json
+
+{
+    "account": "63c7cd22ed94e3e9d288892f",
+    "number": 3,
+    "links": [
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      },
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      },
+   
+      {
+        "number": 1,
+        "name": "sepatu",
+        "link": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"
+      }
+    ]
+}

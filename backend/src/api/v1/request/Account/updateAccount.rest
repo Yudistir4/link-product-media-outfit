@@ -1,0 +1,8 @@
+### UPDATE ACCOUNT
+PUT http://localhost:5000/accounts/63c87233a019295ef85ed1ee
+content-type: application/json
+
+{
+    "username": "outfitgram.id"
+}
+ 

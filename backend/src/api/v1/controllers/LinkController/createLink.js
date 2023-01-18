@@ -1,13 +1,26 @@
 const Link = require("../../models/Link");
+const {
+  successRespond,
+  customRespond,
+  // errorRespond,
+} = require("../../utils/respondUtils");
+const { convert } = require("../../utils/shopeeUtils");
+const { tryCatch } = require("../../utils/tryCatch");
 
-const createLink = async (req, res) => {
-  try {
-    let data = new Link(req.body);
-    data = await data.save();
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json(error);
+exports.createLink = tryCatch(async (req, res) => {
+  // try {
+  let data = new Link(req.body);
+  // try {
+  for (let i = 0; i < data.links.length; i++) {
+    data.links[i].link = await convert(data.links[i].link, i + 1);
   }
-};
+  // } catch (error) {
+  //   errorRespond(res, customRespond.BadRequest, error.message);
+  // }
 
-module.exports = { createLink };
+  data = await data.save();
+  successRespond(res, customRespond.RecordCreated, data);
+  // } catch (error) {
+  //   errorRespond(res, customRespond.InternalServerError, error.message);
+  // }
+});

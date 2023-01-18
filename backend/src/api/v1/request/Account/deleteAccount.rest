@@ -1,0 +1,4 @@
+
+
+### DELETE ACCOUNT
+DELETE http://localhost:5000/accounts/63c7cd22ed94e3e9d288892f

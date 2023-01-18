@@ -1,14 +1,16 @@
-const Account = require("../../models/Account");
+const Link = require("../../models/Link");
 const AppError = require("../../utils/AppError");
 const { successRespond, customRespond } = require("../../utils/respondUtils");
 const { tryCatch } = require("../../utils/tryCatch");
 
-exports.updateAccount = tryCatch(async (req, res) => {
-  let data = await Account.findOne({ _id: req.params.id });
+exports.updateLink = tryCatch(async (req, res) => {
+  let data = await Link.findOne({ _id: req.params.id });
   if (!data) {
-    throw new AppError("Not Found", 404);
+    throw new AppError("Link Not Found", 404);
   }
-  data.username = req.body.username;
+  data.number = req.body.number;
+  data.links = req.body.links;
+
   await data.save();
   successRespond(res, customRespond.UpdateSuccess, data);
 });

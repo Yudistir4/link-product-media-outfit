@@ -1,0 +1,10 @@
+### GET links
+GET http://localhost:5000/links
+
+
+### GET Link
+GET http://localhost:5000/links
+    ?page=1
+    &limit=5
+    &account=63c7cd22ed94e3e9d288892f
+ 

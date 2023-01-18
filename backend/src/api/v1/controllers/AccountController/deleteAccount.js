@@ -1,12 +1,17 @@
 const Account = require("../../models/Account");
+const { cloudinary } = require("../../../../config/Cloudinary");
+const { tryCatch } = require("../../utils/tryCatch");
+const { successRespond, customRespond } = require("../../utils/respondUtils");
+const AppError = require("../../utils/AppError");
 
-const deleteAccount = async (req, res) => {
-  try {
-    await Account.deleteOne({ _id: req.params.id });
-    res.status(200).json({ message: "Delete success" });
-  } catch (error) {
-    res.status(500).json(error);
+exports.deleteAccount = tryCatch(async (req, res) => {
+  let data = await Account.findOne({ _id: req.params.id });
+  if (!data) {
+    throw new AppError("Not Found", 404);
   }
-};
-
-module.exports.deleteAccount = deleteAccount;
+  if (data.filename) {
+    await cloudinary.uploader.destroy(data.filename);
+  }
+  await Account.deleteOne({ _id: req.params.id });
+  successRespond(res, customRespond.DeleteSuccess);
+});
