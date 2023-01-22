@@ -73,7 +73,7 @@ const LinkProductClient = () => {
                   {item.number}
                 </div>
 
-                <p className=" group-hover:text-white transition-all w-full">
+                <p className="flex items-center justify-center group-hover:text-white transition-all w-full">
                   {item.name}
                 </p>
               </a>
