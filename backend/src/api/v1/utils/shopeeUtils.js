@@ -10,7 +10,7 @@ const convert = async (originUrl, no, subIds = null) => {
     let query = {
       query: `mutation {
         generateShortLink(input: {originUrl: "${originUrl}", subIds: ${
-        subIds || "[]"
+        subIds ? JSON.stringify(subIds) : "[]"
       }}) {
           shortLink
         }

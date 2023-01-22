@@ -4,5 +4,6 @@ POST http://localhost:5000/links/convert
 content-type: application/json
 
 {
-    "originUrl": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610"     
+    "originUrl": "https://shopee.co.id/HUSEN-Totebag-Wanita-Tas-Kantor-Jinjing-Shoulder-Bag-Ashley-Reves-Bag-i.573171519.20134215080?sp_atk=04135b85-e2b1-4b5b-b225-dfe8c2cb5610",
+    "tags":[]     
 }

@@ -3,6 +3,7 @@ const { cloudinary } = require("../../../../config/Cloudinary");
 const { tryCatch } = require("../../utils/tryCatch");
 const { successRespond, customRespond } = require("../../utils/respondUtils");
 const AppError = require("../../utils/AppError");
+const Link = require("../../models/Link");
 
 exports.deleteAccount = tryCatch(async (req, res) => {
   let data = await Account.findOne({ _id: req.params.id });
@@ -13,5 +14,7 @@ exports.deleteAccount = tryCatch(async (req, res) => {
     await cloudinary.uploader.destroy(data.filename);
   }
   await Account.deleteOne({ _id: req.params.id });
+  await Link.deleteMany({ account: req.params.id });
+
   successRespond(res, customRespond.DeleteSuccess);
 });

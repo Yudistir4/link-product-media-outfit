@@ -13,6 +13,7 @@ exports.updateProfilePic = tryCatch(async (req, res) => {
   if (data.filename) {
     await cloudinary.uploader.destroy(data.filename);
   }
+  console.log(req.file);
   data.profilePicUrl = req.file.path;
   data.filename = req.file.filename;
   await data.save();

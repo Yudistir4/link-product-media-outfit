@@ -3,7 +3,10 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const AccountSchema = new mongoose.Schema(
   {
-    username: { type: String, unique: true },
+    username: {
+      type: String,
+      trim: true,
+    },
     profilePicUrl: { type: String },
     filename: { type: String },
   },

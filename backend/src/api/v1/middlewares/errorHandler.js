@@ -20,7 +20,7 @@ const errorHandler = (error, req, res, next) => {
 
   if (error instanceof mongoose.Error) {
     return res.status(400).json({
-      message: "mongoose error",
+      message: error.message,
       // message: error.message,
     });
   }
