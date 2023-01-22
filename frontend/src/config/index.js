@@ -7,8 +7,9 @@ import dataRO from "../assets/data/ro.json";
 
 export const config = {
   // server: import.meta.env.VITE_SERVER,
-  server: process.env.VITE_SERVER,
+  // server: process.env.VITE_SERVER,
   // server: "http://localhost:5000",
+  server: "https://link-product-be.onrender.com",
   profilePic: {
     outfitgram: og,
     outfitfakboy: of,
