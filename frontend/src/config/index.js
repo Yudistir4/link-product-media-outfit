@@ -6,7 +6,8 @@ import dataOF from "../assets/data/of.json";
 import dataRO from "../assets/data/ro.json";
 
 export const config = {
-  server: import.meta.env.VITE_SERVER,
+  // server: import.meta.env.VITE_SERVER,
+  server: process.env.VITE_SERVER,
   // server: "http://localhost:5000",
   profilePic: {
     outfitgram: og,
