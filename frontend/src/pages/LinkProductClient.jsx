@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import IconButton from '../components/IconButton';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { HiPlusSm, HiUser } from 'react-icons/hi';
-import { Button, Input } from '@chakra-ui/react';
-import LinkLists from '../components/LinkProductClient/LinkLists';
+import {   Input } from '@chakra-ui/react';
 import { config } from '../config';
 
 const LinkProductClient = () => {
