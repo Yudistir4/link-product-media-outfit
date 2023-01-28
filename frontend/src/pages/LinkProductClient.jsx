@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import IconButton from "../components/IconButton";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import IconButton from '../components/IconButton';
 
-import { HiPlusSm, HiUser } from "react-icons/hi";
-import { Button, Input } from "@chakra-ui/react";
-import LinkLists from "../components/LinkProductClient/LinkLists";
-import { config } from "../config";
+import { HiPlusSm, HiUser } from 'react-icons/hi';
+import { Button, Input } from '@chakra-ui/react';
+import LinkLists from '../components/LinkProductClient/LinkLists';
+import { config } from '../config';
 
 const LinkProductClient = () => {
   const { username } = useParams();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [data, setData] = useState(config.data[username]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!config.data[username]) {
-      navigate("/404");
+      navigate('/404');
     }
   }, []);
 
@@ -45,7 +45,9 @@ const LinkProductClient = () => {
       />
 
       <h1 className="text-xl font-serif">{username}</h1>
-      <p className="">Kalo ada link rusak bisa langsung DM instagram ya</p>
+      <p className="text-center">
+        Kalo ada link rusak bisa langsung DM instagram ya
+      </p>
       <Input
         placeholder="Cari nomer barang..."
         value={value}
