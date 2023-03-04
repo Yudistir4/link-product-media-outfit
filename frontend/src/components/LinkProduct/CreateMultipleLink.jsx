@@ -5,24 +5,24 @@ import {
   Input,
   Textarea,
   useToast,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { createLink } from "../../services/Link";
-import { useForm } from "react-hook-form";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useQueryClient } from "@tanstack/react-query";
+} from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { createLink } from '../../services/Link';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useQueryClient } from '@tanstack/react-query';
 
 const FORM_VALIDATION = Yup.object().shape({
-  number: Yup.number("Harus nomor").required("Wajib diisi"),
-  text: Yup.string().required("Wajib diisi"),
-  originUrl: Yup.string().required("Wajib diisi"),
+  number: Yup.number('Harus nomor').required('Wajib diisi'),
+  text: Yup.string().required('Wajib diisi'),
+  originUrl: Yup.string().required('Wajib diisi'),
 });
 
 const defaultValues = {
-  number: "",
-  text: "",
-  originUrl: "",
+  number: '',
+  text: '',
+  originUrl: '',
 };
 
 const CreateMultipleLink = ({ id, username }) => {
@@ -30,15 +30,15 @@ const CreateMultipleLink = ({ id, username }) => {
   const [nextUrutan, setNextUrutan] = useState();
   const toast = useToast();
   let next =
-    queryClient.getQueryData(["get-links", id])?.pages[0].data?.docs[0]
+    queryClient.getQueryData(['get-links', id])?.pages[0].data?.docs[0]
       ?.number + 1;
-  console.log("Outside: ", next);
+  console.log('Outside: ', next);
   useEffect(() => {
     let next =
-      queryClient.getQueryData(["get-links", id])?.pages[0].data?.docs[0]
+      queryClient.getQueryData(['get-links', id])?.pages[0].data?.docs[0]
         ?.number + 1;
     console.log(next);
-    setValue("number", next == NaN ? 1 : next);
+    setValue('number', next == NaN ? 1 : next);
     setNextUrutan(next == NaN ? 1 : next);
   }, [id]);
 
@@ -63,16 +63,16 @@ const CreateMultipleLink = ({ id, username }) => {
 
   const submit = (data) => {
     console.log(data);
-    let splitLinks = data.originUrl.split("\n");
-    let splitText = data.text.split("\n");
+    let splitLinks = data.originUrl.split('\n');
+    let splitText = data.text.split('\n');
     splitText = splitText.map((text) => {
       return text
-        .substring(0, text.lastIndexOf(" "))
-        .substring(text.indexOf(".") + 1)
+        .substring(0, text.lastIndexOf(' '))
+        .substring(text.indexOf('.') + 1)
         .trim();
     });
     data = {
-      tags: [username],
+      tags: [username, data.number],
       account: id,
       number: data.number,
       links: splitLinks.map((link, i) => ({
@@ -82,7 +82,7 @@ const CreateMultipleLink = ({ id, username }) => {
       })),
     };
     if (!username) {
-      toast({ title: "Username Wajib Ada", status: "error" });
+      toast({ title: 'Username Wajib Ada', status: 'error' });
       return;
     }
     mutate(data);
@@ -101,7 +101,7 @@ const CreateMultipleLink = ({ id, username }) => {
           type="number"
           className="text-center"
           placeholder="Number"
-          {...register("number")}
+          {...register('number')}
         />
         <FormErrorMessage>
           {errors.number && errors.number.message}
@@ -110,7 +110,7 @@ const CreateMultipleLink = ({ id, username }) => {
       <div className="flex gap-3">
         <FormControl isInvalid={errors.text} isDisabled={isSubmitting}>
           <Textarea
-            {...register("text")}
+            {...register('text')}
             // value={value}
             // onChange={handleInputChange}
             placeholder="Text"
@@ -122,7 +122,7 @@ const CreateMultipleLink = ({ id, username }) => {
         </FormControl>
         <FormControl isInvalid={errors.originUrl} isDisabled={isSubmitting}>
           <Textarea
-            {...register("originUrl")}
+            {...register('originUrl')}
             // value={value}
             // onChange={handleInputChange}
             placeholder="Link"
