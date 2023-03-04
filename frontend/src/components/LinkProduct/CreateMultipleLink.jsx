@@ -72,7 +72,7 @@ const CreateMultipleLink = ({ id, username }) => {
         .trim();
     });
     data = {
-      tags: [username, data.number],
+      tags: [username, `${data.number}`],
       account: id,
       number: data.number,
       links: splitLinks.map((link, i) => ({
