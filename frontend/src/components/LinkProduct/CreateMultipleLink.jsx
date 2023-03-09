@@ -29,17 +29,16 @@ const CreateMultipleLink = ({ id, username }) => {
   const queryClient = useQueryClient();
   const [nextUrutan, setNextUrutan] = useState();
   const toast = useToast();
-  let next =
-    queryClient.getQueryData(['get-links', id])?.pages[0].data?.docs[0]
-      ?.number + 1;
-  console.log('Outside: ', next);
+
   useEffect(() => {
-    let next =
-      queryClient.getQueryData(['get-links', id])?.pages[0].data?.docs[0]
-        ?.number + 1;
-    console.log(next);
-    setValue('number', next == NaN ? 1 : next);
-    setNextUrutan(next == NaN ? 1 : next);
+    setTimeout(() => {
+      let next =
+        queryClient.getQueryData(['get-links', id])?.pages[0].data?.docs[0]
+          ?.number + 1;
+      console.log(next);
+      setValue('number', isNaN(next) ? 1 : next);
+      setNextUrutan(isNaN(next) ? 1 : next);
+    }, 500);
   }, [id]);
 
   // const nextUrutan =

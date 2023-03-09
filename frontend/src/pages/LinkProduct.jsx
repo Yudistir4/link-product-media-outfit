@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { HiPlusSm, HiUser } from "react-icons/hi";
-import { Button } from "@chakra-ui/react";
-import { createAccount, getAccounts } from "../services/Account";
-import { useToast } from "@chakra-ui/react";
-import CurrentAccount from "../components/LinkProduct/CurrentAccount";
-import Convert from "../components/LinkProduct/Convert";
-import CreateMultipleLink from "../components/LinkProduct/CreateMultipleLink";
-import LinkLists from "../components/LinkProduct/LinkLists";
-import { getGenerateLink } from "../services/Link";
+import { HiPlusSm, HiUser } from 'react-icons/hi';
+import { Button } from '@chakra-ui/react';
+import { createAccount, getAccounts } from '../services/Account';
+import { useToast } from '@chakra-ui/react';
+import CurrentAccount from '../components/LinkProduct/CurrentAccount';
+import Convert from '../components/LinkProduct/Convert';
+import CreateMultipleLink from '../components/LinkProduct/CreateMultipleLink';
+import LinkLists from '../components/LinkProduct/LinkLists';
+import { getGenerateLink } from '../services/Link';
+import { useQueryClient } from '@tanstack/react-query';
 
 const LinkProduct = () => {
   const { id } = useParams();
@@ -20,9 +21,10 @@ const LinkProduct = () => {
   const currentAccount = accounts?.data.docs.find((doc) => doc.id === id);
   const { refetch, isFetching } = getGenerateLink(id);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!currentAccount && !isFetchingGetAcc) {
-      navigate("/404");
+      navigate('/404');
     }
   }, []);
 
@@ -31,9 +33,9 @@ const LinkProduct = () => {
   const { mutate: addAccountBtn } = createAccount(
     {},
     (data) => {
-      toast({ title: data.message, status: "success" });
+      toast({ title: data.message, status: 'success' });
     },
-    (err) => toast({ title: err.message, status: "error" })
+    (err) => toast({ title: err.message, status: 'error' })
   );
 
   return (
@@ -89,7 +91,7 @@ const LinkProduct = () => {
         <>
           <Convert username={currentAccount.username} key={id} />
           <CreateMultipleLink id={id} username={currentAccount.username} />
-          <LinkLists id={id} key={id + "linklist"} />
+          <LinkLists id={id} key={id + 'linklist'} />
         </>
       )}
     </div>

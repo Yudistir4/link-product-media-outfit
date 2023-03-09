@@ -1,9 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import LinkProduct from "./pages/LinkProduct";
-import LinkProductClient from "./pages/LinkProductClient";
-import NotFound from "./pages/NotFound";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import LinkProduct from './pages/LinkProduct';
+import LinkProductClient from './pages/LinkProductClient';
+import NotFound from './pages/NotFound';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function App() {
   const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
