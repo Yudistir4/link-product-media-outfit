@@ -1,0 +1,10 @@
+ 
+### CREATE ACCOUNT
+POST http://localhost:5000/users/login
+content-type: application/json
+
+{
+    "email": "yudis@mail.com",
+    "password": "123456"
+} 
+ 

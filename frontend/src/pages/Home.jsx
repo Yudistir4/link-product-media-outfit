@@ -1,16 +1,16 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
-import IconButton from "../components/IconButton";
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+// import IconButton from "../components/IconButton";
 
-import { HiPlusSm, HiUser } from "react-icons/hi";
-import { Button } from "@chakra-ui/react";
-import { createAccount, getAccounts } from "../services/Account";
-import { useToast } from "@chakra-ui/react";
-import CurrentAccount from "../components/LinkProduct/CurrentAccount";
-import Convert from "../components/LinkProduct/Convert";
-import CreateMultipleLink from "../components/LinkProduct/CreateMultipleLink";
-import LinkLists from "../components/LinkProduct/LinkLists";
-import { getGenerateLink, getLinks } from "../services/Link";
+import { HiPlusSm, HiUser } from 'react-icons/hi';
+// import { Button } from "@chakra-ui/react";
+import { createAccount, getAccounts } from '../services/Account';
+import { useToast } from '@chakra-ui/react';
+// import CurrentAccount from "../components/LinkProduct/CurrentAccount";
+// import Convert from "../components/LinkProduct/Convert";
+// import CreateMultipleLink from "../components/LinkProduct/CreateMultipleLink";
+// import LinkLists from "../components/LinkProduct/LinkLists";
+import { getGenerateLink, getLinks } from '../services/Link';
 
 const LinkProduct = () => {
   const { id } = useParams();
@@ -32,9 +32,9 @@ const LinkProduct = () => {
   const { mutate: addAccountBtn } = createAccount(
     {},
     (data) => {
-      toast({ title: data.message, status: "success" });
+      toast({ title: data.message, status: 'success' });
     },
-    (err) => toast({ title: err.message, status: "error" })
+    (err) => toast({ title: err.message, status: 'error' })
   );
 
   return (

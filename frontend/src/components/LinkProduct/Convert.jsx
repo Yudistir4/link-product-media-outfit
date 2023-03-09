@@ -1,13 +1,12 @@
-import { Button, Input, useToast } from "@chakra-ui/react";
-import React from "react";
-import { useState } from "react";
-import { convertLink } from "../../services/Link";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Button, Input, useToast } from '@chakra-ui/react';
+import React from 'react';
+import { useState } from 'react';
+import { convertLink } from '../../services/Link';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 const Convert = ({ username }) => {
-  console.log(username);
   const toast = useToast();
-  const [originUrl, setOriginUrl] = useState("");
-  const [result, setResult] = useState("");
+  const [originUrl, setOriginUrl] = useState('');
+  const [result, setResult] = useState('');
   const { mutate, isLoading } = convertLink((data) =>
     setResult(data.data.shortLink)
   );
@@ -15,7 +14,7 @@ const Convert = ({ username }) => {
   const submit = (e) => {
     e.preventDefault();
     if (!username) {
-      toast({ title: "Username Wajib Ada", status: "error" });
+      toast({ title: 'Username Wajib Ada', status: 'error' });
       return;
     }
     mutate({ originUrl, tags: [username] });
@@ -46,8 +45,8 @@ const Convert = ({ username }) => {
         </Button>
         <Button
           onClick={() => {
-            setResult("");
-            setOriginUrl("");
+            setResult('');
+            setOriginUrl('');
           }}
           type="button"
           size="sm"
@@ -67,7 +66,7 @@ const Convert = ({ username }) => {
         />
         <CopyToClipboard
           text={result}
-          onCopy={() => toast({ title: "Copied!!", status: "success" })}
+          onCopy={() => toast({ title: 'Copied!!', status: 'success' })}
         >
           <Button type="button" size="sm" colorScheme="blue" variant="solid">
             Copy
