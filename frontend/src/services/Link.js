@@ -6,13 +6,9 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { convertToQueryStr } from '.';
+import { convertToQueryStr, Get, Put, Post, Delete } from '.';
 import copy from 'copy-to-clipboard';
-import useAxiosPrivate from '../store/useAxios';
 export const getGenerateLink = (id, onSuccess, onError) => {
-  // Get(`/links${convertToQueryStr({ limit: 999999, page: 1, id })}`);
-  const { Get } = useAxiosPrivate();
-
   const toast = useToast();
   return useQuery({
     // refetchOnMount: false,
@@ -45,8 +41,6 @@ export const getGenerateLink = (id, onSuccess, onError) => {
   });
 };
 export const getLinks = (query) => {
-  const { Get } = useAxiosPrivate();
-
   return useInfiniteQuery({
     queryKey: ['get-links', query.account],
     queryFn: ({ pageParam = 1 }) => {
@@ -63,7 +57,6 @@ export const getLinks = (query) => {
 };
 
 export const createLink = (onSuccess, onError) => {
-  const { Post } = useAxiosPrivate();
   const queryClient = useQueryClient();
   const toast = useToast();
   return useMutation({
@@ -82,8 +75,6 @@ export const createLink = (onSuccess, onError) => {
   });
 };
 export const deleteLink = (id) => {
-  const { Delete } = useAxiosPrivate();
-
   const toast = useToast();
   const queryClient = useQueryClient();
   return useMutation({
@@ -97,7 +88,6 @@ export const deleteLink = (id) => {
 };
 
 export const updateLink = (id, onSuccess, onError) => {
-  const { Put } = useAxiosPrivate();
   const toast = useToast();
   const queryClient = useQueryClient();
   return useMutation({
@@ -115,7 +105,6 @@ export const updateLink = (id, onSuccess, onError) => {
   });
 };
 export const convertLink = (onSuccess, onError) => {
-  const { Post } = useAxiosPrivate();
   const toast = useToast();
   const queryClient = useQueryClient();
   return useMutation({

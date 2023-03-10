@@ -19,7 +19,7 @@ const { verify } = require('../middlewares/verify');
 const upload = multer({ storage: storage });
 const router = require('express').Router();
 
-// router.use(verify);
+router.use(verify);
 router.get('/', getAccount);
 router.post('/', createAccount);
 router.delete('/:id', deleteAccount);

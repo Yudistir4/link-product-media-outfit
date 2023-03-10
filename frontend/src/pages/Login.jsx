@@ -27,7 +27,6 @@ const Login = () => {
   });
   const { mutate, isLoading, error } = login();
   const submit = (data) => {
-    console.log(data);
     mutate(data);
   };
 
@@ -38,7 +37,9 @@ const Login = () => {
         className="max-w-sm border-2  rounded-lg p-5 flex flex-col gap-3"
       >
         {error && (
-          <div className="text-center text-sm text-red-500">{error}</div>
+          <div className="text-center text-sm text-red-500">
+            {error?.response?.data?.message}
+          </div>
         )}
         <FormControl isInvalid={errors.email}>
           <FormLabel>Email address</FormLabel>
