@@ -1,10 +1,11 @@
-import { useDisclosure } from "@chakra-ui/react";
-import React from "react";
-import { HiOutlineX, HiPencil, HiUser } from "react-icons/hi";
-import { deleteAccount } from "../../services/Account";
-import IconButton from "../IconButton";
-import ConfirmModal from "./ConfirmModal";
-import UpdateAccountModal from "./UpdateAccountModal";
+import { useDisclosure } from '@chakra-ui/react';
+import React from 'react';
+import { HiOutlineX, HiPencil, HiUser } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { deleteAccount } from '../../services/Account';
+import IconButton from '../IconButton';
+import ConfirmModal from './ConfirmModal';
+import UpdateAccountModal from './UpdateAccountModal';
 
 const CurrentAccount = ({ currentAccount }) => {
   const { mutate: deleteAccountBtn } = deleteAccount(currentAccount?.id);
@@ -16,7 +17,7 @@ const CurrentAccount = ({ currentAccount }) => {
   } = useDisclosure();
 
   return (
-    <div className="relative group m-auto">
+    <div className="relative group m-auto flex flex-col items-center">
       <ConfirmModal
         title="Delete Accounts"
         onClose={closeConfirmModal}
@@ -58,7 +59,12 @@ const CurrentAccount = ({ currentAccount }) => {
           <HiUser />
         </div>
       )}
-      <h1 className="text-center">{currentAccount?.username}</h1>
+      <Link
+        to={`/link-products/${currentAccount?.username}`}
+        className="text-center hover:text-blue-500 transition-all"
+      >
+        {currentAccount?.username}
+      </Link>
     </div>
   );
 };

@@ -1,15 +1,67 @@
-import { config } from "../config";
-import axios from "axios";
+import { config } from '../config';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export const convertToQueryStr = (query) => {
-  let result = "";
+  let result = '';
   for (const key in query) {
     result += `&${key}=${query[key]}`;
   }
-  return result.replace("&", "?");
+  return result.replace('&', '?');
 };
 
-export const client = axios.create({ baseURL: config.server });
+export const client = axios.create({
+  baseURL: config.server,
+});
+const refresh = async () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const response = await axios.post(config.server + '/users/refresh', {
+    refreshToken: user.refreshToken,
+  });
+
+  localStorage.setItem(
+    'user',
+    JSON.stringify({ ...user, ...response.data.data })
+  );
+  client.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${response.data.data.accessToken}`;
+
+  return response.data.data.accessToken;
+};
+client.interceptors.request.use(
+  async (config) => {
+    let currentDate = new Date();
+    let accessToken = JSON.parse(localStorage.getItem('user')).accessToken;
+    let decodedToken = jwt_decode(accessToken);
+    if (decodedToken.exp * 1000 < currentDate.getTime()) {
+      const accessToken = await refresh();
+      config.headers['Authorization'] = 'Bearer ' + accessToken;
+    } else {
+      if (!config.headers['Authorization']) {
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// let waiting = false;
+
+// client.interceptors.response.use(
+//   (resp) => resp,
+//   async (error) => {
+//     if (error.response.status === 401 && !waiting) {
+//       waiting = true;
+//       await refresh();
+//       // client.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+//       return client(error.config);
+//     }
+//     waiting = false;
+//     return error;
+//   }
+// );
 
 export const Get = async (path) => {
   try {
@@ -39,25 +91,3 @@ export const Delete = async (path, data) => {
     throw error.response.data.message;
   }
 };
-// const Post = (path, data) => client.post(`${config.server}/${path}`, data);
-// const Put = (path, data) => client.put(`${config.server}/${path}`, data);
-// const Delete = (path, data) => client.delete(`${config.server}/${path}`, data);
-
-// // GET
-// export const getAccounts = (query) =>
-//   Get(`/accounts${convertToQueryStr(query)}`);
-// export const getLinks = (query) => Get(`/links${convertToQueryStr(query)}`);
-
-// // POST
-// export const createAccount = (data) => Post(`/accounts`, data);
-// export const createLink = (data) => Post(`/links`, data);
-// export const convertLink = (data) => Post(`/links/convert`, data);
-
-// // PUT
-// export const updateAccount = (data) => Put(`/accounts/${data.id}`, data);
-// export const updateProfilePic = (data) => Put(`/accounts/${data.id}`, data);
-// export const updateLink = (data) => Put(`/links/${data.id}`, data);
-
-// // DELETE
-// export const deleteLink = (id) => Delete(`/links/${id}`);
-// export const deleteAccount = (id) => Delete(`/accounts/${id}`);

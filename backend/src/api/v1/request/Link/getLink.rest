@@ -1,5 +1,6 @@
 ### GET links
 GET http://localhost:5000/links
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgyMDA2NjgsImV4cCI6MTY3ODIwMDcyOH0.of-CJ2qQtOey5Xt5kdf-lRiKy64rEgN7h8k17GFAnOI 
 
 
 ### GET Link
@@ -7,4 +8,6 @@ GET http://localhost:5000/links
     ?page=1
     &limit=5
     &account=63c7cd22ed94e3e9d288892f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgyMDA2NjgsImV4cCI6MTY3ODIwMDcyOH0.of-CJ2qQtOey5Xt5kdf-lRiKy64rEgN7h8k17GFAnOI 
+
  

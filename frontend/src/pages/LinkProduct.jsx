@@ -10,7 +10,7 @@ import Convert from '../components/LinkProduct/Convert';
 import CreateMultipleLink from '../components/LinkProduct/CreateMultipleLink';
 import LinkLists from '../components/LinkProduct/LinkLists';
 import { getGenerateLink } from '../services/Link';
-import { useQueryClient } from '@tanstack/react-query';
+import Navbar from '../components/Navbar';
 
 const LinkProduct = () => {
   const { id } = useParams();
@@ -39,62 +39,70 @@ const LinkProduct = () => {
   );
 
   return (
-    <div className="flex flex-col gap-5 p-5 max-w-2xl m-auto">
-      {/* User */}
-      <div className="flex items-center  m-3 gap-3 justify-center">
-        {accounts?.data.docs.map((doc) => {
-          if (doc.id !== id)
-            return (
-              <Link
-                key={doc.id}
-                to={`/links/${doc.id}`}
-                className="relative group"
-              >
-                {doc.profilePicUrl ? (
-                  <img
-                    className="w-16 h-16 rounded-full hover:shadow-lg shadow-black"
-                    src={doc.profilePicUrl}
-                    alt=""
-                  />
-                ) : (
-                  <div
-                    key={doc.id}
-                    className="bg-gray-300 flex items-center justify-center text-3xl w-16 h-16 rounded-full hover:shadow-lg shadow-black"
-                  >
-                    <HiUser />
-                  </div>
-                )}
-              </Link>
-            );
-        })}
-        <div
-          onClick={addAccountBtn}
-          className="bg-gray-300 cursor-pointer flex items-center justify-center text-3xl w-16 h-16 rounded-full hover:shadow-lg shadow-black"
-        >
-          <HiPlusSm />
+    <>
+      <Navbar />
+      <div className="flex flex-col gap-5 p-5 max-w-2xl m-auto">
+        {/* User */}
+        <div className="flex items-center  m-3 gap-3 justify-center">
+          {accounts?.data.docs.map((doc) => {
+            if (doc.id !== id)
+              return (
+                <Link
+                  key={doc.id}
+                  to={`/links/${doc.id}`}
+                  className="relative group"
+                >
+                  {doc.profilePicUrl ? (
+                    <img
+                      className="w-16 h-16 rounded-full hover:shadow-lg shadow-black"
+                      src={doc.profilePicUrl}
+                      alt=""
+                    />
+                  ) : (
+                    <div
+                      key={doc.id}
+                      className="bg-gray-300 flex items-center justify-center text-3xl w-16 h-16 rounded-full hover:shadow-lg shadow-black"
+                    >
+                      <HiUser />
+                    </div>
+                  )}
+                </Link>
+              );
+          })}
+          <div
+            onClick={addAccountBtn}
+            className="bg-gray-300 cursor-pointer flex items-center justify-center text-3xl w-16 h-16 rounded-full hover:shadow-lg shadow-black"
+          >
+            <HiPlusSm />
+          </div>
         </div>
+
+        {/* CURRENT USER */}
+        {currentAccount && (
+          <CurrentAccount
+            key={currentAccount.username}
+            currentAccount={currentAccount}
+          />
+        )}
+
+        <Button
+          isLoading={isFetching}
+          onClick={refetch}
+          size="sm"
+          colorScheme="blue"
+          variant="solid"
+        >
+          Copy Result
+        </Button>
+        {currentAccount && (
+          <>
+            <Convert username={currentAccount.username} key={id} />
+            <CreateMultipleLink id={id} username={currentAccount.username} />
+            <LinkLists id={id} key={id + 'linklist'} />
+          </>
+        )}
       </div>
-
-      {/* CURRENT USER */}
-      {currentAccount && <CurrentAccount currentAccount={currentAccount} />}
-
-      <Button
-        isLoading={isFetching}
-        onClick={refetch}
-        size="sm"
-        colorScheme="blue"
-        variant="solid"
-      >
-        Copy Result
-      </Button>
-      {currentAccount && (
-        <>
-          <Convert username={currentAccount.username} key={id} />
-          <CreateMultipleLink id={id} username={currentAccount.username} />
-          <LinkLists id={id} key={id + 'linklist'} />
-        </>
-      )}
-    </div>
+    </>
   );
 };
 

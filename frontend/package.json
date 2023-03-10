@@ -19,6 +19,7 @@
     "copy-to-clipboard": "^3.3.3",
     "eslint-config-react-app": "^7.0.1",
     "framer-motion": "^6.5.1",
+    "jwt-decode": "^3.1.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -29,7 +30,8 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.6.2",
     "sort-by": "^1.2.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zustand": "^4.3.6"
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^4.26.1",

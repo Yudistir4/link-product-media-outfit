@@ -1,22 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useToast } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react';
 import {
   useInfiniteQuery,
   useMutation,
   useQuery,
   useQueryClient,
-} from "@tanstack/react-query";
-import { convertToQueryStr, Delete, Get, Post, Put } from ".";
-import copy from "copy-to-clipboard";
+} from '@tanstack/react-query';
+import { convertToQueryStr, Get, Put, Post, Delete } from '.';
+import copy from 'copy-to-clipboard';
 export const getGenerateLink = (id, onSuccess, onError) => {
-  // Get(`/links${convertToQueryStr({ limit: 999999, page: 1, id })}`);
-
   const toast = useToast();
   return useQuery({
     // refetchOnMount: false,
     refetchOnWindowFocus: false,
     enabled: false,
-    queryKey: ["get-generate-link", id],
+    queryKey: ['get-generate-link', id],
     onSuccess: (data) => {
       onSuccess && onSuccess(data);
       for (let i = 0; i < data.data.docs.length; i++) {
@@ -29,11 +27,11 @@ export const getGenerateLink = (id, onSuccess, onError) => {
       console.log(data);
 
       copy(JSON.stringify(data.data.docs));
-      toast({ title: "Text Copied!!!", status: "success" });
+      toast({ title: 'Text Copied!!!', status: 'success' });
     },
 
     onError: (err) => {
-      toast({ title: err, status: "error" });
+      toast({ title: err, status: 'error' });
       onError && onError(err);
     },
     queryFn: () =>
@@ -44,7 +42,7 @@ export const getGenerateLink = (id, onSuccess, onError) => {
 };
 export const getLinks = (query) => {
   return useInfiniteQuery({
-    queryKey: ["get-links", query.account],
+    queryKey: ['get-links', query.account],
     queryFn: ({ pageParam = 1 }) => {
       return Get(`/links${convertToQueryStr(query)}&page=${pageParam}`);
     },
@@ -63,14 +61,14 @@ export const createLink = (onSuccess, onError) => {
   const toast = useToast();
   return useMutation({
     onSuccess: (data) => {
-      queryClient.invalidateQueries("get-links");
+      queryClient.invalidateQueries('get-links');
       onSuccess && onSuccess(data);
-      toast({ title: data.message, status: "success" });
+      toast({ title: data.message, status: 'success' });
     },
 
     onError: (err) => {
       console.log(err);
-      toast({ title: err, status: "error" });
+      toast({ title: err, status: 'error' });
       onError && onError(err);
     },
     mutationFn: (data) => Post(`/links`, data),
@@ -81,10 +79,10 @@ export const deleteLink = (id) => {
   const queryClient = useQueryClient();
   return useMutation({
     onSuccess: (data) => {
-      queryClient.invalidateQueries("get-links");
-      toast({ title: data.message, status: "success" });
+      queryClient.invalidateQueries('get-links');
+      toast({ title: data.message, status: 'success' });
     },
-    onError: (err) => toast({ title: err, status: "error" }),
+    onError: (err) => toast({ title: err, status: 'error' }),
     mutationFn: () => Delete(`/links/${id}`),
   });
 };
@@ -94,13 +92,13 @@ export const updateLink = (id, onSuccess, onError) => {
   const queryClient = useQueryClient();
   return useMutation({
     onSuccess: (data) => {
-      queryClient.invalidateQueries("get-links");
+      queryClient.invalidateQueries('get-links');
       onSuccess && onSuccess(data);
-      toast({ title: data.message, status: "success" });
+      toast({ title: data.message, status: 'success' });
     },
 
     onError: (err) => {
-      toast({ title: err, status: "error" });
+      toast({ title: err, status: 'error' });
       onError && onError(err);
     },
     mutationFn: (data) => Put(`/links/${id}`, data),
@@ -111,13 +109,13 @@ export const convertLink = (onSuccess, onError) => {
   const queryClient = useQueryClient();
   return useMutation({
     onSuccess: (data) => {
-      queryClient.invalidateQueries("get-links");
+      queryClient.invalidateQueries('get-links');
       onSuccess && onSuccess(data);
-      toast({ title: data.message, status: "success" });
+      toast({ title: data.message, status: 'success' });
     },
 
     onError: (err) => {
-      toast({ title: err, status: "error" });
+      toast({ title: err, status: 'error' });
       onError && onError(err);
     },
     mutationFn: (data) => Post(`/links/convert`, data),

@@ -1,0 +1,9 @@
+ 
+### CREATE ACCOUNT
+POST http://localhost:5000/users/refresh
+content-type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzgyMDE3ODR9.Z8NMBlnb4N6-pvzbI2DEh9wVJcoypr0pM-3nxNnOxwc" 
+} 
+ 
