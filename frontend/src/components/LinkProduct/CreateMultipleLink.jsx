@@ -66,7 +66,7 @@ const CreateMultipleLink = ({ id, username }) => {
     let splitText = data.text.split('\n');
     splitText = splitText.map((text) => {
       return text
-        .substring(0, text.lastIndexOf(' '))
+        // .substring(0, text.lastIndexOf(' '))
         .substring(text.indexOf('.') + 1)
         .trim();
     });
