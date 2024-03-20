@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import {   Input } from '@chakra-ui/react';
+import { Input } from '@chakra-ui/react';
 import { config } from '../config';
 
 const LinkProductClient = () => {
@@ -58,7 +58,7 @@ const LinkProductClient = () => {
             className="p-5 border-2 rounded-lg flex gap-3 flex-col "
           >
             {record && (
-              <div className="text-xl bg-black/90 shadow-lg shadow-black/30 blue-300 h-9 w-9 m-auto rounded-full font-semibold text-white flex items-center justify-center">
+              <div className="text-xl bg-black/90 shadow-lg shadow-black/30 blue-300 h-10 w-10 m-auto rounded-full font-semibold text-white flex items-center justify-center">
                 {record?.number}
               </div>
             )}
